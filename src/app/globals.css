@@ -15,19 +15,33 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.navbar {
+  background-image: url("/assets/suggestions/mobile/background-header.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
