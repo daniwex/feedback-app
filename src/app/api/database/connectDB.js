@@ -4,12 +4,9 @@ import mongoose from "mongoose";
 export const connectMongoose = async () => {
   mongoose.set("strictQuery", true);
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: "feedback",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI, {dbName: "feedback",});
   } catch (error) {
     console.log(error);
   }
 };
+
