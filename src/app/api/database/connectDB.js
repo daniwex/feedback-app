@@ -7,10 +7,9 @@ export const connectMongoose = async () => {
     await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "feedback",
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
   } catch (error) {
     console.log(error);
   }
 };
-
-
