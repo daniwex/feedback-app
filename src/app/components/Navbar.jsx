@@ -19,7 +19,7 @@ export default function Navbar() {
     setFeature(str);
   }
   return (
-    <div className="sm:mr-10 sm:w-1/5 xl:w-2/12 min-h-screen overflow-y-hidden z-60  fixed w-full sm:relative  ">
+    <div className="sm:mr-10 sm:w-1/5 xl:w-2/12   w-full sm:relative ">
       <nav className="flex justify-between h-[8vh] items-center px-7 sm:px-0 navbar sm:h-32 sm:rounded-xl sm:block">
         <div className="block sm:flex sm:items-center sm:h-full sm:px-7">
           <div>Feedback Board</div>
@@ -132,7 +132,7 @@ export default function Navbar() {
         </div>
       </nav>
       {menubarshow ? (
-        <div className="w-full h-[100vh] z-60  fixed sm:relative left-0 bg-[#9797973b] ">
+        <div className="w-full h-[92vh] absolute left-0 z-60  bg-[#9797973b] ">
           <div className="float-right h-full w-3/4 bg-[#F7F8FD]  p-6">
             <div className="bg-white p-5 h-60 rounded-md">
               <div className="grid grid-cols-3 gap-y-3">
