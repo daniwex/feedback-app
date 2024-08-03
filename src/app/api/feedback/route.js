@@ -3,6 +3,9 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import Feedback  from "../database/models/feedback.js";
 
+export const dynamic = "force-dynamic";
+
+
 export const POST = async (req, res) => {
   const { title, category, details } = await req.json();
   try {
