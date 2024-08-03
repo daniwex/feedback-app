@@ -21,7 +21,7 @@ export default function pages() {
     getData();
   }, []);
   return (
-    <div className="bg-[#F7F8FD] h-screen pb-10 overflow-y-scroll -z-10 sm:flex sm:justify-center sm:py-10">
+    <div className="bg-[#F7F8FD] min-h-screen pb-10 overflow-y-scroll pt-[8vh]  -z-10 sm:flex sm:justify-center sm:py-10">
       <Navbar />
       <div className="sm:w-1/2 xl:w-1/3">
         <form className="px-7 sm:rounded-lg h-16 flex items-center justify-between bg-[#373F68] text-white">
@@ -36,7 +36,7 @@ export default function pages() {
           </Link>
         </form>
         {feeds.length == 0 ? (
-          <div className="w-full flex justify-center py-10 px-7 h-[85vh] bg-[#F7F8FD]">
+          <div className="w-full flex justify-center py-10 px-7 sm:px-0 h-[85vh] bg-[#F7F8FD]">
             <div className="bg-white w-full flex justify-center items-center">
               <div className="text-center">
                 <div className="flex justify-center">
