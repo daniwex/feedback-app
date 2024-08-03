@@ -10,7 +10,7 @@ export default function pages() {
   useEffect(() => {
     async function getData() {
       try {
-        const data = await fetch("/api/feeds");
+        const data = await fetch("/api/feeds", { cache: 'no-store' });
         if (data.ok) {
           const response = await data.json();
           setFeeds(response.feedbacks)
