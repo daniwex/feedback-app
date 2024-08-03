@@ -132,10 +132,10 @@ export default function page() {
               Planned <span>({lenplanned.length})</span>
             </div>
             <div onClick={() => setCurrent("progress")} className={`py-4 ${current == "progress" ? 'border-b-4 border-b-[#AD1FEA]' : ''}`}>
-              In-Progress <span>({lenplanned.length})</span>
+              In-Progress <span>({lenprogress.length})</span>
             </div>
             <div onClick={() => setCurrent("live")} className={`py-4 ${current == "live" ? 'border-b-4 border-b-[#62BCFA]' : ''}`}>
-              Live <span>({lenplanned.length})</span>
+              Live <span>({lenlive.length})</span>
             </div>
           </div>
           <div className="p-7">
