@@ -14,7 +14,6 @@ export default function pages() {
         if (data.ok) {
           const response = await data.json();
           setFeeds(response.feedbacks)
-          console.log(response.feedbacks)
         }
       } catch (error) {
         console.log(error);

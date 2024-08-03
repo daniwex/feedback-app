@@ -6,7 +6,7 @@ export default function layout({ children }) {
   const pathname = usePathname();
 
   return (
-    <div>
+    <div className="h-screen bg-[#F7F8FD] ">
       <div className="bg-[#373F68] h-35 px-7 py-5 text-white flex justify-between items-center">
         <div className="">
           <Link href="/feed" className="flex items-center w-fit text-white">

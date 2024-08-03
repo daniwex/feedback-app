@@ -1,7 +1,9 @@
 import { connectMongoose } from "../database/connectDB.js";
 import { NextResponse } from "next/server";
 import Feedback  from "../database/models/feedback.js";
-import { Federant } from "next/font/google/index.js";
+
+export const dynamic = "force-dynamic";
+
 
 export const GET = async (req, res) => {
     try {

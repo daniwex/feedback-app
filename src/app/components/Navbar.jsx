@@ -33,23 +33,23 @@ export default function Navbar() {
         <div className="w-full h-[92vh] absolute left-0 z-20  bg-[#9797973b] ">
           <div className="float-right w-3/4 bg-[#F7F8FD] h-full p-6">
             <div className="bg-white p-5 h-60 rounded-md">
-              <div className="grid grid-cols-3 gap-y-5">
-                <span className={` w-fit px-6 rounded-full py-2 ${feature == 'all' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('all')}>
+              <div className="grid grid-cols-3 gap-y-3">
+                <span className={` w-fit px-6 rounded-lg py-2 ${feature == 'all' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('all')}>
                   All
                 </span>
-                <span className={` w-fit px-6 rounded-full py-2 ${feature == 'ui' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`}onClick={() => filterelements('ui')} >
+                <span className={` w-fit px-6 rounded-lg py-2 ${feature == 'ui' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`}onClick={() => filterelements('ui')} >
                   UI
                 </span>
-                <span className={` w-fit px-6 rounded-full py-2 ${feature == 'ux' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('ux')}>
+                <span className={` w-fit px-6 rounded-lg py-2 ${feature == 'ux' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('ux')}>
                   UX
                 </span>
-                <span className={`col-span-2  w-fit px-6 rounded-full py-2 ${feature == 'enhancement' ? 'bg-[#4661E6] text-white ' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('enhancement')}>
+                <span className={`col-span-2  w-fit px-6 rounded-lg py-2 ${feature == 'enhancement' ? 'bg-[#4661E6] text-white ' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('enhancement')}>
                   Enhancement
                 </span>
-                <span  className={`w-fit px-6 rounded-full py-2 ${feature == 'bug' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('bug')}>
+                <span  className={`w-fit px-6 rounded-lg py-2 ${feature == 'bug' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('bug')}>
                   Bug
                 </span>
-                <span  className={`w-fit px-6 rounded-full py-2 ${feature == 'feature' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('feature')}>
+                <span  className={`w-fit px-6 rounded-lg py-2 ${feature == 'feature' ? 'bg-[#4661E6] text-white' : 'text-[#4661E6] bg-[#F2F4FF]'}`} onClick={() => filterelements('feature')}>
                   Feature
                 </span>
               </div>

@@ -20,7 +20,7 @@ export default function page() {
     getData();
   }, []);
   return (
-    <div className="bg-[#F7F8FD] h-full">
+    <div className="">
       {feeds?.length > 0 ? (
         <div className="p-7">
           {feeds.map((feed, index) => (
