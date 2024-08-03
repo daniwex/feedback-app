@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Feed({title, details, category, border=false, upvotes=0, comments=0}) {
+export default function Feed({title, details, category, border=false,borderColor='', upvotes=0, comments=0}) {
   return (
-    <div className={`bg-white my-3 p-5 rounded-md ${border ? 'border-t-4 border-t-[#AD1FEA]' : ''}`}>
+    <div className={`bg-white my-3 sm:w-full p-5 rounded-md ${border ? 'border-t-4 '+borderColor : ''}`}>
       <h2 className='font-bold text-lg'>{title}</h2>
       <p className='py-4 text-sm'>{details}</p>
       <span className='w-fit px-6 rounded-lg font-bold py-2 text-[#4661E6] bg-[#F2F4FF] text-sm'>{category}</span>
