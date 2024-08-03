@@ -6,7 +6,6 @@ import Feed from "../components/Feed";
 
 
 export default function pages() {
-  console.log("mounted")
   const [feeds, setFeeds] = useState([]);
   useEffect(() => {
     async function getData() {
@@ -15,6 +14,7 @@ export default function pages() {
         if (data.ok) {
           const response = await data.json();
           setFeeds(response.feedbacks)
+          console.log("mounted")
         }
       } catch (error) {
         console.log(error);
