@@ -132,8 +132,8 @@ export default function Navbar() {
         </div>
       </nav>
       {menubarshow ? (
-        <div className="w-full h-[92vh] absolute left-0 z-20  bg-[#9797973b] ">
-          <div className="float-right w-3/4 bg-[#F7F8FD] h-full p-6">
+        <div className="w-full h-screen absolute left-0 z-60 overflow-y-hidden  bg-[#9797973b] ">
+          <div className="float-right w-3/4 bg-[#F7F8FD] h-screen p-6">
             <div className="bg-white p-5 h-60 rounded-md">
               <div className="grid grid-cols-3 gap-y-3">
                 <span
