@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import Circe from "./Circe";
 
 export default function Navbar() {
   const [menubarshow, setmenubarshow] = useState(false);
@@ -61,15 +62,15 @@ export default function Navbar() {
               </div>
               <div className="pt-10">
                 <div className="flex justify-between py-2">
-                  <div>Planned</div>
+                  <div className="flex items-center"><Circe bgcolor="#F49F85"></Circe> Planned</div>
                   <span>{planned}</span>
                 </div>
                 <div className="flex justify-between py-2">
-                  <div>In-Progress</div>
+                  <div className="flex items-center"><Circe bgcolor="#AD1FEA"></Circe> In-Progress</div>
                   <span>{progress}</span>
                 </div>
                 <div className="flex justify-between py-2">
-                  <div>Live</div>
+                  <div className="flex items-center"><Circe bgcolor="#62BCFA"></Circe> Live</div>
                   <span>{live}</span>
                 </div>
               </div>

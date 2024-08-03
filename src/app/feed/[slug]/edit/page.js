@@ -1,43 +1,69 @@
 "use client";
 import Notification from "@/app/components/Notification";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 export default function page() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("feature");
   const [details, setDetails] = useState("");
+  const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
+  let [method, setMethod] = useState("PATCH")
 
-  async function submitFeedback(e) {
-    e.preventDefault();
-    if (!title || !category || !details) {
-      return;
-    }
-    const data = { title, category, details };
-    try {
-      const req = await fetch("/api/feedback", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (req.ok) {
-        const response = await req.json()
-        setMessage("Thank you for your feedback");
-        console.log(response)
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setTitle("");
-      setCategory("feature");
-      setDetails("");
-    }
-  }
+  const params = useParams();
+  const router = useRouter();
+
   function closebtn(){
-    setMessage('')
+    setMessage("")
   }
+
+  async function onSubmitForm(event,method){
+      event.preventDefault()
+      try {
+        const data = {title, category, details, status, slug:params}
+        const req = await fetch("/api/slug_data", {
+          method,
+          body: JSON.stringify(data)
+        })
+        if(req.ok){
+          if(method == "DELETE"){
+            return router.push("/feed")
+          }
+          let response = await req.json()
+          setMessage(response.message)
+
+        }
+
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const data = await fetch("/api/slug_data", {
+          method: "POST",
+          body: JSON.stringify(params),
+        });
+        if (data.ok) {
+          const response = await data.json();
+          setTitle(response.feedback.title)
+          setCategory(response.feedback.category)
+          setDetails(response.feedback.details)
+          setStatus(response.feedback.status)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getData();
+  }, []);
+
   return (
-    <div className="p-7 bg-[#F7F8FD]  h-screen">
+    <div className="p-7 bg-[#F7F8FD] min-h-screen">
       <div>
         <Link href="/feed" className="flex items-center w-fit text-[#979797]">
           <img className="h-fit" src="/assets/shared/icon-arrow-left.svg"></img>
@@ -46,8 +72,8 @@ export default function page() {
       </div>
       {message != "" ? <Notification message={message} closebtn={closebtn} /> : <></>}
       <div className="mt-10 p-5 bg-white rounded-md">
-        <h1 className="text-xl">Create New Fedback</h1>
-        <form className="mt-10" onSubmit={submitFeedback}>
+        <h1 className="text-xl font-bold">Editing '{title}'</h1>
+        <form className="mt-10" onSubmit={(event) => onSubmitForm(event,method)}>
           <div>
             <label>Feedback Title</label>
             <p className="text-[#979797] text-sm py-2">
@@ -63,7 +89,7 @@ export default function page() {
           <div className="my-4">
             <label>Category</label>
             <p className="text-[#979797] text-sm py-2">
-              Add a short, descriptive headline
+              Choose a category for your feedback
             </p>
             <select
               className="h-14 px-2 bg-[#F7F8FD]  w-full"
@@ -75,6 +101,21 @@ export default function page() {
               <option value="bug">Bug</option>
               <option value="ux">UX</option>
               <option value="enhancement">Enhancement</option>
+            </select>
+          </div>
+          <div className="my-4">
+            <label>Update Status</label>
+            <p className="text-[#979797] text-sm py-2">
+              Change feature state
+            </p>
+            <select
+              className="h-14 px-2 bg-[#F7F8FD]  w-full"
+              onChange={(e) => setStatus(e.target.value)}
+              value={status}
+            >
+              <option value="planned">Planned</option>
+              <option value="progress">In-Progress</option>
+              <option value="live">Live</option>
             </select>
           </div>
           <div>
@@ -92,8 +133,16 @@ export default function page() {
           <button
             type="submit"
             className="w-full text-white mt-4 bg-[#AD1FEA] h-14 rounded-md"
+            onClick={() => setMethod("PATCH")}
           >
-            Add Feedback
+            Save Changes
+          </button>
+          <button
+            type="submit"
+            className="w-full text-white mt-4 bg-[#D73737] h-14 rounded-md"
+            onClick={() => setMethod("DELETE")}
+          >
+            Delete
           </button>
         </form>
       </div>
