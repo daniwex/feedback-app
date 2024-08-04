@@ -2,6 +2,7 @@ import { connectMongoose } from "../database/connectDB.js";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import Feedback from "../database/models/feedback.js";
+import comment from "../database/models/comment";
 
 
 export const dynamic = "force-dynamic";
@@ -49,6 +50,7 @@ export const DELETE = async (req) => {
   try{
     connectMongoose();
     const feedback = await Feedback.findOneAndDelete({slug:slug.slug})
+    const commenttdel = await comment.deleteMany({feedback:feedback._id})
     if(!feedback){
       return NextResponse.json({message:"item not found"}, {status:404})
   }

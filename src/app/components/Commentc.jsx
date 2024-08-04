@@ -19,10 +19,10 @@ export default function Commentc({ name, username, post }) {
       </div>
       <p>{post}</p>
       {reply ? (
-        <div>
+        <div className="mt-3">
           <form className="block sm:flex justify-between">
-            <textarea className="sm:w-2/3 w-full p-2 text-sm bg-[#F7F8FD] "></textarea>
-            <button className="text-sm" >Post Reply</button>
+            <textarea className="sm:w-4/5  sm:h-20 w-full p-2 text-sm bg-[#F7F8FD] "></textarea>
+            <button className="text-sm text-[#4661E6]" >Post Reply</button>
           </form>
         </div>
       ) : (

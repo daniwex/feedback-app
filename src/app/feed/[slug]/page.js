@@ -23,8 +23,8 @@ export default function page() {
     });
     if (req.ok) {
       const response = await req.json();
-      console.log(response)
-      setComments(comments => [...response.users]);
+      console.log(response);
+      setComments((comments) => [...response.users]);
     }
   }
   async function submitForm(e) {
@@ -40,7 +40,7 @@ export default function page() {
         body: JSON.stringify(data),
       });
       if (req.ok) {
-        getComments()
+        getComments();
       }
     } catch (error) {
       console.log(error);
@@ -114,11 +114,20 @@ export default function page() {
                   {comments.length ? (
                     <>
                       {comments.map((el) => (
-                        <div><Commentc name={el.name} username={el.username} post={el.comment}/> </div>
+                        <div>
+                          <Commentc
+                            name={el.name}
+                            username={el.username}
+                            post={el.comment}
+                          />{" "}
+                        </div>
                       ))}
                     </>
                   ) : (
-                    <>j</>
+                    <div className="font-bold text-center w-full flex flex-col">
+                      No comments
+                      <span className="font-extralight text-[#979797]">Be the first to comment</span>
+                    </div>
                   )}
                 </div>
               </div>
