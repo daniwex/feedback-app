@@ -22,8 +22,8 @@ export default function page() {
     });
     if (req.ok) {
       const response = await req.json();
-      setComments(comments => comments = [...comments, response]);
-      // console.log(response)
+      console.log(response.data)
+      setComments(comments => [ ...response.data]);
     }
   }
   async function submitForm(e) {
@@ -39,7 +39,7 @@ export default function page() {
         body: JSON.stringify(data),
       });
       if (req.ok) {
-        getComments()
+        // getComments()
       }
     } catch (error) {
       console.log(error);
@@ -108,12 +108,12 @@ export default function page() {
                 />
               </Suspense>
               <div className="my-5 bg-white p-7">
-                <h2 className="font-bold mb-5">{comments.length} Comments </h2>
+                <h2 className="font-bold mb-5">{comments?.length} Comments </h2>
                 <div>
-                  {comments.length == 0 ? (
+                  {comments.length ? (
                     <>
-                      {comments?.map((el) => (
-                        <span>Hello</span>
+                      {comments.map((el) => (
+                        <div>{el.comment}</div>
                       ))}
                     </>
                   ) : (

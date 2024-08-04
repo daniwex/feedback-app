@@ -12,11 +12,11 @@ export const POST = async (req, res) => {
     try {
         await connectMongoose()
         const comments = await comment.find({feedback: feedback._id})
-        console.log(comments)
         if(!comments){
             return NextResponse.json({message:"comment not found"}, {status:404})
         }
-        return NextResponse.json({comments}, {status:200})
+        const data = comments
+        return NextResponse.json({data}, {status:200})
     } catch (error) {
         console.log(error)
     }
