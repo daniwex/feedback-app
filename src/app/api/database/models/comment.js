@@ -3,18 +3,23 @@ import { Schema, models, model } from "mongoose";
 const commentSchmema = new Schema({
   commenter: {
     type: Schema.Types.ObjectId,
-    ref: users,
+    ref: 'users',
     required: [true, "please input the commenter"],
   },
   comment: {
     type: String,
     required: [true, "please type something"],
   },
-  replies: [this],
+  feedback: {
+    type: Schema.Types.ObjectId,
+    ref: 'feedbacks',
+    required: [true, "please type something"],
+  },
+  replies: [],
 });
 
 
-const comments = models.comments || model('comments', commentSchmema)
+const comment = models.comments || model('comments', commentSchmema)
 
 
-module.exports = comments
+module.exports = comment

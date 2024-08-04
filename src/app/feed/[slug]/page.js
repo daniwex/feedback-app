@@ -1,4 +1,5 @@
 "use client";
+
 import { Suspense, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
@@ -9,9 +10,43 @@ import { useRouter } from "next/navigation";
 export default function page() {
   const [feed, setFeed] = useState([]);
   const [isAuthor, setIsAuthor] = useState(false);
-  const [comments, setComments] = useState([])
-   const params = useParams();
+  let [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
+  const params = useParams();
   const router = useRouter();
+
+  async function getComments() {
+    const req = await fetch("/api/all_comments", {
+      method: "POST",
+      body: JSON.stringify(feed),
+    });
+    if (req.ok) {
+      const response = await req.json();
+      setComments(comments => comments = [...comments, response]);
+      // console.log(response)
+    }
+  }
+  async function submitForm(e) {
+    e.preventDefault();
+    if (comment == "") {
+      return;
+    }
+    try {
+      const id = feed._id;
+      const data = { post: comment, id };
+      const req = await fetch("/api/comment", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      if (req.ok) {
+        getComments()
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setComment("");
+    }
+  }
 
   useEffect(() => {
     async function getData() {
@@ -31,8 +66,11 @@ export default function page() {
     }
     getData();
   }, []);
+  useEffect(() => {
+    getComments();
+  }, [feed]);
   return (
-    <div className="p-7 bg-[#F7F8FD] h-screen sm:flex sm:justify-center ">
+    <div className="p-7 bg-[#F7F8FD] min-h-screen sm:flex sm:justify-center ">
       <div className="sm:w-1/2 xl:w-1/3">
         <div className="flex justify-between">
           <button
@@ -70,11 +108,26 @@ export default function page() {
                 />
               </Suspense>
               <div className="my-5 bg-white p-7">
-
-
+                <h2 className="font-bold mb-5">{comments.length} Comments </h2>
+                <div>
+                  {comments.length == 0 ? (
+                    <>
+                      {comments?.map((el) => (
+                        <span>Hello</span>
+                      ))}
+                    </>
+                  ) : (
+                    <>j</>
+                  )}
+                </div>
               </div>
               <div>
-                <Comment />
+                <Comment
+                  getComments={(e) => {
+                    setComment(e.target.value);
+                  }}
+                  submitComment={(e) => submitForm(e)}
+                />
               </div>
             </div>
           ) : (

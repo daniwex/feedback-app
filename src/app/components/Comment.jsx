@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-export default function Comment() {
+export default function Comment({getComments, submitComment}) {
   const LIMIT = 250
   let [charLeft, setCharLeft] = useState(LIMIT);
-  let [comment, setComment] = useState('')
+  let [comment, setComment] = useState(LIMIT)
   function handleOnPress(e){
     if(e.key != 'Backspace' && e.key != 'spacebar'){
         setCharLeft(charLeft = charLeft - 1)
@@ -15,12 +15,12 @@ export default function Comment() {
     }
   }
   return (
-    <div className="bg-white p-5">
+    <form className="bg-white p-5" onSubmit={(e) => submitComment(e)} >
       <h2 className="font-bold text-xl mb-3">Add Comment</h2>
       <textarea
         placeholder="Type your comment here"
         className="h-28 p-2 text-sm bg-[#F7F8FD] w-full placeholder:text-xs"
-        onChange={(e) => setComment(e.target.value)}
+        onChange={(e) =>{getComments(e); setComment(e.target.value)}}
         onKeyDown={handleOnPress}
       ></textarea>
       <div className="mt-5 flex justify-between items-center">
@@ -34,6 +34,6 @@ export default function Comment() {
           </button>
         </span>
       </div>
-    </div>
+    </form>
   );
 }
