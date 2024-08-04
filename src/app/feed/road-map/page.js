@@ -36,7 +36,7 @@ export default function page() {
 
   return (
     <div className="min-h-screen bg-[#F7F8FD] sm:flex sm:justify-center sm:py-20 ">
-      <div className="sm:w-3/5 xl:w-2/5 w-full min-h-screen">
+      <div className="sm:w-4/5 xl:w-2/5 w-full min-h-screen">
         <div className="bg-[#373F68] h-35 px-7 py-5 text-white flex justify-between items-center sm:rounded-lg sm:mb-10">
           <div className="">
             <button
@@ -60,7 +60,7 @@ export default function page() {
         </div>
         <div className="sm:border-none hidden sm:block">
           <div className="w-full sm:h-full flex justify-between px-7 sm:px-0">
-            <div className="sm:w-2/3 sm:mr-5">
+            <div className="sm:w-4/5 sm:mr-5">
               <div className="">
                 Planned <span>({lenplanned.length})</span>
                 <p className="hidden sm:block text-sm text-[#979797]">
@@ -81,7 +81,7 @@ export default function page() {
                 </div>
               </div>
             </div>
-            <div className="sm:w-2/3 sm:mr-5">
+            <div className="sm:w-4/5 sm:mr-5">
               <div className="">
                 In-Progress <span>({lenprogress.length})</span>
                 <p className="hidden sm:block text-sm text-[#979797]">
@@ -102,7 +102,7 @@ export default function page() {
                 </div>
               </div>
             </div>
-            <div className="sm:w-2/3">
+            <div className="sm:w-4/5">
               <div className="">
                 Live <span>({lenlive.length})</span>
                 <p className="hidden sm:block text-sm text-[#979797]">

@@ -31,12 +31,12 @@ export default function Navbar() {
             <i onClick={closeMenu} class="fas fa-times text-xl"></i>
           )}
         </div>
-        <div className=" bg-red-400  hidden sm:block mt-10 ">
+        <div className=" hidden sm:block mt-10 ">
           <div className=" bg-[#F7F8FD] h-full w-full">
             <div className="bg-white p-5 w-full h-60 rounded-md sm:h-fit">
               <div className="grid grid-cols-3 gap-y-3 xl:grid-cols-4  sm:gap-y-2">
                 <span
-                  className={` w-fit sm:px-8 px-6 rounded-lg py-2 cursor-pointer ${
+                  className={` w-fit items-center flex text-xs sm:px-8 px-6 rounded-lg py-2 cursor-pointer ${
                     feature == "all"
                       ? "bg-[#4661E6] text-white"
                       : "text-[#4661E6] bg-[#F2F4FF]"
@@ -46,7 +46,7 @@ export default function Navbar() {
                   All
                 </span>
                 <span
-                  className={` w-fit sm:px-8 px-6 rounded-lg cursor-pointer py-2 ${
+                  className={` w-fit items-center flex text-xs sm:px-8 px-6 rounded-lg cursor-pointer py-2 ${
                     feature == "ui"
                       ? "bg-[#4661E6] text-white"
                       : "text-[#4661E6] bg-[#F2F4FF]"
@@ -56,7 +56,7 @@ export default function Navbar() {
                   UI
                 </span>
                 <span
-                  className={` w-fit px-6 sm:px-8 rounded-lg cursor-pointer py-2 ${
+                  className={` w-fit items-center flex text-xs px-6 sm:px-8 rounded-lg cursor-pointer py-2 ${
                     feature == "ux"
                       ? "bg-[#4661E6] text-white"
                       : "text-[#4661E6] bg-[#F2F4FF]"
@@ -66,7 +66,7 @@ export default function Navbar() {
                   UX
                 </span>
                 <span
-                  className={`col-span-2 sm:px-9 w-fit px-6 rounded-lg cursor-pointer py-2 ${
+                  className={`col-span-2 items-center flex text-xs sm:px-9 w-fit px-6 rounded-lg cursor-pointer py-2 ${
                     feature == "enhancement"
                       ? "bg-[#4661E6] text-white "
                       : "text-[#4661E6] bg-[#F2F4FF]"
@@ -76,7 +76,7 @@ export default function Navbar() {
                   Enhancement
                 </span>
                 <span
-                  className={`w-fit px-6 sm:px-8 rounded-lg cursor-pointer py-2 ${
+                  className={`w-fit items-center flex text-xs px-6 sm:px-8 rounded-lg cursor-pointer py-2 ${
                     feature == "bug"
                       ? "bg-[#4661E6] text-white"
                       : "text-[#4661E6] bg-[#F2F4FF]"
@@ -86,7 +86,7 @@ export default function Navbar() {
                   Bug
                 </span>
                 <span
-                  className={`w-fit px-6 rounded-lg cursor-pointer py-2 ${
+                  className={`w-fit items-center flex text-xs px-6 rounded-lg cursor-pointer py-2 ${
                     feature == "feature"
                       ? "bg-[#4661E6] text-white"
                       : "text-[#4661E6] bg-[#F2F4FF]"
@@ -97,7 +97,7 @@ export default function Navbar() {
                 </span>
               </div>
             </div>
-            <div className="mt-10 bg-white p-5 h-60 rounded-md">
+            <div className="mt-10 bg-white p-5 text-sm h-fit rounded-md">
               <div className="flex justify-between">
                 <h2 className="text-xl font-bold sm:text-black">Roadmap</h2>
                 <Link
@@ -109,7 +109,7 @@ export default function Navbar() {
               </div>
               <div className="pt-10 sm:text-black">
                 <div className="flex justify-between py-2 ">
-                  <div className="flex items-center">
+                  <div className="flex items-center text-sm">
                     <Circe bgcolor="#F49F85"></Circe> Planned
                   </div>
                   <span>{planned}</span>
