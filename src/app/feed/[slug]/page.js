@@ -6,6 +6,7 @@ import Link from "next/link";
 import Feed from "@/app/components/Feed";
 import Comment from "@/app/components/Comment";
 import { useRouter } from "next/navigation";
+import Commentc from "@/app/components/Commentc";
 
 export default function page() {
   const [feed, setFeed] = useState([]);
@@ -22,8 +23,8 @@ export default function page() {
     });
     if (req.ok) {
       const response = await req.json();
-      console.log(response.data)
-      setComments(comments => [ ...response.data]);
+      console.log(response)
+      setComments(comments => [...response.users]);
     }
   }
   async function submitForm(e) {
@@ -39,7 +40,7 @@ export default function page() {
         body: JSON.stringify(data),
       });
       if (req.ok) {
-        // getComments()
+        getComments()
       }
     } catch (error) {
       console.log(error);
@@ -113,7 +114,7 @@ export default function page() {
                   {comments.length ? (
                     <>
                       {comments.map((el) => (
-                        <div>{el.comment}</div>
+                        <div><Commentc name={el.name} username={el.username} post={el.comment}/> </div>
                       ))}
                     </>
                   ) : (
