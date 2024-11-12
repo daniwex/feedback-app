@@ -5,36 +5,45 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import User from "../database/models/user.js";
 
-export const POST = async (req, res) => {
-  const feedback = await req.json();
-  const user = cookies().get("currentUser").value;
-  let result;
+export const POST = async (req) => {
   try {
-    await connectMongoose();
-    const comments = await comment.find({ feedback: feedback._id });
-    const users = await Promise.all(
-        comments.map(async (comment) => {
-          const user = await User.findById(comment.commenter);
-          if (user) {
-            return {
-              username: user.username,
-              name: user.fullname,
-              comment: comment.comment,
-              replies:comment.replies
-            };
-          } else {
-            return null;
-          }
-        })
-      );
-    if (!comments) {
-      return NextResponse.json(
-        { message: "comment not found" },
-        { status: 404 }
-      );
+    const { feed } = await req.json();
+    const userCookie = cookies().get("currentUser");
+    if (!userCookie) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
-    return NextResponse.json({ users }, { status: 200 });
+
+    const user = userCookie.value;
+
+    await connectMongoose();
+
+    const comments = await comment.find({ feedback: feed._id });
+    if (!comments.length) {
+      return NextResponse.json({ message: "No comments found" }, { status: 404 });
+    }
+
+    const users = await Promise.all(
+      comments.map(async (comment) => {
+        const user = await User.findById(comment.commenter);
+        if (user) {
+          return {
+            username: user.username,
+            name: user.fullname,
+            comment: comment.comment,
+            replies: comment.replies,
+          };
+        } else {
+          return null;
+        }
+      })
+    );
+
+    // Filter out null users
+    const filteredUsers = users.filter(user => user !== null);
+
+    return NextResponse.json({ users: filteredUsers }, { status: 200 });
   } catch (error) {
     console.log(error);
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
   }
 };

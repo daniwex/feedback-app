@@ -8,8 +8,8 @@ import Comment from "@/app/components/Comment";
 import { useRouter } from "next/navigation";
 import Commentc from "@/app/components/Commentc";
 
-export default function page() {
-  const [feed, setFeed] = useState([]);
+export default function Page() {
+  const [feed, setFeed] = useState(null);
   const [isAuthor, setIsAuthor] = useState(false);
   let [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
@@ -17,14 +17,15 @@ export default function page() {
   const router = useRouter();
 
   async function getComments() {
+    console.log(feed)
+    if (!feed || feed == undefined) return;
     const req = await fetch("/api/all_comments", {
       method: "POST",
-      body: JSON.stringify(feed),
+      body: JSON.stringify({feed}),
     });
     if (req.ok) {
       const response = await req.json();
-      console.log(response);
-      setComments((comments) => [...response.users]);
+      setComments(response.users);
     }
   }
   async function submitForm(e) {
@@ -66,7 +67,7 @@ export default function page() {
       }
     }
     getData();
-  }, []);
+  }, [params]);
   useEffect(() => {
     getComments();
   }, [feed]);
@@ -94,7 +95,7 @@ export default function page() {
               </Link>
             </>
           ) : (
-            <></>
+            null
           )}
         </div>
         <div className="mt-10">
@@ -106,27 +107,26 @@ export default function page() {
                   details={feed.details}
                   category={feed.category}
                   upvotes={feed.upvotes}
+                  comments={comments.length}
                 />
               </Suspense>
               <div className="my-5 bg-white p-7">
-                <h2 className="font-bold mb-5">{comments?.length} Comments </h2>
+                <h2 className="font-bold mb-5">{comments.length} Comments </h2>
                 <div>
-                  {comments.length ? (
-                    <>
-                      {comments.map((el) => (
-                        <div>
-                          <Commentc
-                            name={el.name}
-                            username={el.username}
-                            post={el.comment}
-                          />{" "}
-                        </div>
-                      ))}
-                    </>
+                  {comments.length > 0 ? (
+                    comments.map((el, index) => (
+                      <Commentc
+                        key={index}
+                        username={el.username}
+                        post={el.comment}
+                      />
+                    ))
                   ) : (
                     <div className="font-bold text-center w-full flex flex-col">
                       No comments
-                      <span className="font-extralight text-[#979797]">Be the first to comment</span>
+                      <span className="font-extralight text-[#979797]">
+                        Be the first to comment
+                      </span>
                     </div>
                   )}
                 </div>
@@ -141,7 +141,7 @@ export default function page() {
               </div>
             </div>
           ) : (
-            <></>
+            null
           )}
         </div>
       </div>
